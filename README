@@ -1,0 +1,35 @@
+This is a simple study to try several types of server architetures.
+
+
+There are currently 3 types of servers:
+
+- One thread per connection (one-thread-connection.c)
+  There's a main loop blocking on accept() and one thread is created to
+  handle each client
+
+- Single thread, using libevent (libevent-single-thread.c)
+  Make use of libevent, to do asynchronous IO
+
+- libevent + pool of threads (pool-threads-libevent.c)
+  Uses asynchronous IO but leaves the actual IO job to a separated thread,
+  previously created (worker-thread)
+
+There's also a single client (client.c) that can be used to connect to
+all those servers.
+
+The idea here is to make experiments on these types of servers and help to
+define which architecture to use on your server implementation. All of them
+seem to have pros and cons. The winner probably will depend on your requirements.
+
+
+To compile:
+
+  ./autogen.sh
+  ./configure
+  make
+  (no need to make install)
+
+In the src/ directory you'll find the binaries.
+
+Have fun!
+  
